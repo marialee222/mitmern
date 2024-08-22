@@ -1,0 +1,525 @@
+/* src/styles/index.css */
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+code {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.navbar {
+  background-color: #f4f5f8;
+}
+
+.navbar-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-text {
+  margin-right: 15px;
+  color: #333;
+  font-size: 16px;
+}
+
+.nav-item .nav-link {
+  margin-right: 10px;
+  padding: 4px;
+  text-align: bottom;
+}
+
+.nav-item .nav-link.active {
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover {
+  background-color: #cad1cf;
+  color: #007bff;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0.75px;
+  background-color: #080808;
+  margin-top: 0px;
+}
+
+.nav-item .nav-link.active {
+  background-color: #90b6cc;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.vip-table {
+  font-weight: bold;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.vip-table th {
+  background-color: #343a40;
+  color: #fff;
+  font-size: 14px;
+}
+
+.vip-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.vip-table tbody tr:nth-child(odd) {
+  background-color: #e9ecef;
+}
+
+.vip-table td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.all-data-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+  background: linear-gradient(to right, #007bff, #66a3ff);
+  color: #fff;
+  border-radius: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(240, 240, 240, 0.97), rgba(240, 240, 240, 0.9)), url('../images/bank.png');
+  background-size: auto 100%;
+  background-position: center top;
+  background-color: #001f4da1;
+  background-repeat: space;
+  z-index: -1;
+}
+
+.custom-bg-color {
+  background-image: linear-gradient(rgb(0, 8, 255), rgb(177, 205, 246, 0.084));
+}
+
+.soft-bg {
+  background-image: linear-gradient(rgb(0, 8, 255), rgb(177, 205, 246));
+}
+
+.page-container {
+  box-shadow: 0px 0px 10px 5px rgba(142, 32, 32, 0.1);
+}
+
+.custom-menu {
+  width: 200px;
+}
+
+.custom-menu .nav-link {
+  padding: 5px 10px;
+}
+
+.modal-body p {
+  font-size: 18px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.modal-body p:first-child {
+  margin-top: 0;
+}
+
+.modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    width: 200px;
+  }
+}
+
+.success-message {
+  background-color: #ebfcef;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+img.custom-image {
+  filter: hue-rotate(180deg) !important;
+}
+
+.custom-image-filter {
+  filter: url(#grayscale);
+}
+
+.custom-image-filter svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.success-message {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-message.hide {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+.card.custom-bg-color {
+  border: none;
+  padding: 10;
+}
+
+/* Refined Welcome message styling */
+.welcome-message {
+  margin-left: auto;
+  font-weight: 600;
+  color: #004080;
+  font-size: 18px;
+  padding: 8px 15px;
+  background-color: #f0f8ff;
+  border-radius: 15px;
+  border: 1px solid #004080;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.welcome-message:hover {
+  background-color: #e0efff;
+  color: #00264d;
+}
+
+/* Styles for account type selection */
+.custom-bg-color .form-group {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.custom-bg-color .form-label,
+.custom-bg-color .form-check-label {
+  color: #343a40;
+  font-weight: 500;
+}
+
+.form-select,
+.form-check-input,
+.form-control {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  color: #333;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.form-select:focus,
+.form-check-input:focus,
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-select option {
+  color: #333;
+  background-color: #fff;
+}
+
+.form-check-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.custom-bg-color .form-group {
+  background-color: transparent;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.custom-bg-color .form-label,
+.custom-bg-color .form-check-label {
+  color: #343a40;
+  font-weight: 500;
+}
+
+/* Scrolling for Admin Dashboard */
+.admin-dashboard {
+  max-height: 500px;
+  overflow-y: scroll;
+  padding-right: 15px;
+}
+
+.admin-dashboard::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admin-dashboard::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+}
+
+.admin-dashboard::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.admin-table-container {
+  max-height: 500px; /* Adjust the height based on your layout */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  position: sticky;
+  top: 0;
+  background-color: #343a40; /* Background color for the header */
+  color: #fff;
+  z-index: 1; /* Ensures the header stays above the scrolling content */
+  padding: 10px;
+  text-align: left;
+}
+
+.admin-table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.admin-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.admin-table tbody tr:nth-child(odd) {
+  background-color: #e9ecef;
+}
+
+
+/* Sticky header style */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the admin dashboard scrollable */
+.admin-dashboard {
+  max-height: 500px; /* Adjust this height as needed */
+  overflow-y: auto;
+}
+
+.scrollable-container {
+  max-height: 80vh; /* Adjust this value as needed */
+  overflow-y: auto;
+  padding-right: 15px; /* To accommodate the scrollbar */
+}
+
+.card {
+  margin-bottom: 20px; /* Add some space between the cards */
+}
+
+/* Add this to your CSS file */
+.admin-dashboard-container {
+  max-height: 80vh; /* Adjust as necessary */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 10px; /* Optional: add padding to avoid scrollbar overlap */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+/* Sidebar container */
+.sidebar {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  width: 250px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: #007bff;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+/* Content container with padding to avoid overlap */
+.content {
+  margin-left: 260px; /* Same as the sidebar width + padding */
+  padding: 20px;
+}
+
+/* Menu Container */
+.menu-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Menu Items */
+.menu-item {
+  display: block;
+  padding: 10px 15px;
+  color: #333333;
+  font-weight: 500;
+  border-bottom: 1px solid #eaeaea;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background-color: #f0f8ff;
+  color: #007bff;
+}
+
+/* Active Menu Item */
+.menu-item.active {
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu Header */
+.menu-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #004080;
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+
+
+.scrollable-container {
+  max-height: 70vh; /* Adjust the height as needed */
+  overflow-y: auto;
+  padding-right: 15px; /* Add some padding to avoid content cutoff */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  margin-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #0056b3;
+}
