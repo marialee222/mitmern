@@ -7,6 +7,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const accountsRoutes = require('./routes/accounts');
 const transactionsRoutes = require('./routes/transactions');
 const transferRoutes = require('./routes/transfer');
+const path = require('path');
 
 // Load environment variables from .env file in the backend folder
 require('dotenv').config({ path: './backend/.env' });
@@ -29,6 +30,14 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/accounts', accountsRoutes);
 app.use('/api/transactions', transactionsRoutes);
 app.use('/api/transfer', transferRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '..', 'build')));
+
+// Handle any other routes by serving the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 // Custom error handler for unexpected errors
 app.use((err, req, res, next) => {
