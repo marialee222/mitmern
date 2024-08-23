@@ -40,7 +40,7 @@ const Withdraw = () => {
   const handleInputChange = (field, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [field]: value,
+      [field]: prevFormData[field] === '0.00' ? value : value,
     }));
     setIsFormFilled(true);
   };
@@ -71,7 +71,6 @@ const Withdraw = () => {
     }
 
     try {
-      // Create a new withdrawal transaction
       const transactionData = {
         accountId: selectedAccount,
         amount,
@@ -142,7 +141,7 @@ const Withdraw = () => {
                   handleInputChange={handleInputChange}
                   isFormFilled={isFormFilled}
                   setIsFormFilled={setIsFormFilled}
-                  widthClass="col-md-12" // Make the amount field wider
+                  widthClass="col-md-12"
                 />
               ) : (
                 <p className="text-center">Please <Link to="/login">log in</Link> to withdraw.</p>

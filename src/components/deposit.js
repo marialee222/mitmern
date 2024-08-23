@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BankForm from './BankForm';
 import { useUser } from '../context/UserProvider';
-import { getUserAccounts, createTransaction } from '../services/api';  // Updated to import createTransaction
+import { getUserAccounts, createTransaction } from '../services/api';
 
 const Deposit = () => {
   const { currentUser } = useUser();
@@ -40,7 +40,7 @@ const Deposit = () => {
   const handleInputChange = (field, value) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [field]: value,
+      [field]: prevFormData[field] === '0.00' ? value : value,
     }));
     setIsFormFilled(true);
   };
@@ -67,7 +67,6 @@ const Deposit = () => {
     }
 
     try {
-      // Create a transaction instead of just updating the balance
       const transactionData = {
         accountId: selectedAccount,
         amount,
@@ -79,7 +78,7 @@ const Deposit = () => {
 
       setTransactionMessage(`Deposit of $${amount.toFixed(2)} USD successful!`);
       setFormData({ ...formData, amount: '0.00' });
-      setBalance(transactionResponse.transaction.amount + balance); // Update balance based on transaction response
+      setBalance(transactionResponse.transaction.amount + balance);
       setIsFormFilled(false);
       setTimeout(() => {
         setTransactionMessage('');
@@ -140,7 +139,8 @@ const Deposit = () => {
                   handleInputChange={handleInputChange}
                   isFormFilled={isFormFilled}
                   setIsFormFilled={setIsFormFilled}
-                  widthClass="col-md-12" // Make the amount field wider
+                  widthClass="col-md-12"
+                  onFocus={(e) => handleInputChange('amount', '')}
                 />
               ) : (
                 <p className="text-center">Please <Link to="/login">log in</Link> to deposit.</p>
