@@ -12,11 +12,15 @@ console.log('JWT_SECRET:', process.env.JWT_SECRET);
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors({
+  origin: '*', // Adjust this if you have a specific origin you want to allow
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type, Authorization'
+}));
 
 // Custom middleware to handle preflight requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // You can change '*' to specific origins if needed
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
