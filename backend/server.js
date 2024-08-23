@@ -4,23 +4,23 @@ const connectDB = require('./config/db');
 const path = require('path');
 
 // Load environment variables from .env file in the backend folder
-require('dotenv').config({ path: './backend/.env' });
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 // Add a console log to check the JWT_SECRET value
 console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 const app = express();
 
-// Enable CORS for all routes
+// Enable CORS with specific origin
 app.use(cors({
-  origin: '*', // Adjust this if you have a specific origin you want to allow
+  origin: process.env.FRONTEND_URL, // Set this to your frontend domain from environment variables
   methods: 'GET,POST,PUT,DELETE,OPTIONS',
   allowedHeaders: 'Content-Type, Authorization'
 }));
 
 // Custom middleware to handle preflight requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL); // Replace '*' with your domain
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
