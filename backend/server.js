@@ -13,14 +13,14 @@ const app = express();
 
 // Enable CORS with specific origin
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Set this to your frontend domain from environment variables
+  origin: process.env.FRONTEND_URL, // Use FRONTEND_URL from environment variables
   methods: 'GET,POST,PUT,DELETE,OPTIONS',
   allowedHeaders: 'Content-Type, Authorization'
 }));
 
 // Custom middleware to handle preflight requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL); // Replace '*' with your domain
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL); // Use FRONTEND_URL from environment variables
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
