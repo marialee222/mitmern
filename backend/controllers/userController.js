@@ -35,26 +35,25 @@ exports.registerUser = async (req, res, next) => {
     // Hash the user's password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
+    console.log('Hashed Password:', user.password);  // Log the hashed password
     await user.save();
 
     // Create and link accounts to the user
     const accountTypes = Array.isArray(accountType) ? accountType : [accountType];
-for (const type of accountTypes) {
-  const account = new Account({
-    user: user._id,
-    accountType: type,
-    accountNumber: 'ACCT' + Date.now() + Math.floor(Math.random() * 1000),
-    balance: 0
-  });
-  await account.save();
+    for (const type of accountTypes) {
+      const account = new Account({
+        user: user._id,
+        accountType: type,
+        accountNumber: 'ACCT' + Date.now() + Math.floor(Math.random() * 1000),
+        balance: 0
+      });
+      await account.save();
 
-  // Link account to the user
-  user.accounts.push(account._id);
-}
+      // Link account to the user
+      user.accounts.push(account._id);
+    }
 
-await user.save();
-
-
+    await user.save();
 
     // Generate a JWT token
     const payload = {
@@ -130,6 +129,7 @@ exports.loginUser = async (req, res) => {
 
     // Check if password matches
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log('Password Match:', isMatch);  // Log whether the passwords match
     if (!isMatch) {
       return res.status(400).json({ msg: 'Invalid email or password' });
     }
