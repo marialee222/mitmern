@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'https://mitmern.herokuapp.com/api';
+const API_URL = 'https://mitmern-dbe9b5e67238.herokuapp.com/api';
+
+
 
 // Register a new user
 export const registerUser = async (userData) => {
