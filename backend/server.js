@@ -1,12 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const authRoutes = require('./routes/api/auth');
-const userRoutes = require('./routes/api/users');
-const adminRoutes = require('./routes/adminRoutes');
-const accountsRoutes = require('./routes/accounts');
-const transactionsRoutes = require('./routes/transactions');
-const transferRoutes = require('./routes/transfer');
 const path = require('path');
 
 // Load environment variables from .env file in the backend folder
@@ -15,8 +9,21 @@ require('dotenv').config({ path: './backend/.env' });
 const app = express();
 
 // Enable CORS for all routes
-// Update this to allow specific origins if needed
 app.use(cors());
+
+// Custom middleware to handle preflight requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Intercept OPTIONS method
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
 
 // Connect to the database
 connectDB();
@@ -25,12 +32,12 @@ connectDB();
 app.use(express.json());
 
 // Define Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/accounts', accountsRoutes);
-app.use('/api/transactions', transactionsRoutes);
-app.use('/api/transfer', transferRoutes);
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/accounts', require('./routes/accounts'));
+app.use('/api/transactions', require('./routes/transactions'));
+app.use('/api/transfer', require('./routes/transfer'));
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '..', 'build')));
