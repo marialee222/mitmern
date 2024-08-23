@@ -15,13 +15,14 @@ require('dotenv').config({ path: './backend/.env' });
 const app = express();
 
 // Enable CORS for all routes
+// Update this to allow specific origins if needed
 app.use(cors());
 
 // Connect to the database
 connectDB();
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 // Define Routes
 app.use('/api/auth', authRoutes);
