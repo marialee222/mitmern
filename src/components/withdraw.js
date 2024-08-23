@@ -38,10 +38,17 @@ const Withdraw = () => {
   }, [currentUser]);
 
   const handleInputChange = (field, value) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [field]: prevFormData[field] === '0.00' ? value : value,
-    }));
+    if (field === 'amount' && formData.amount === '0.00') {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [field]: value,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [field]: value,
+      }));
+    }
     setIsFormFilled(true);
   };
 

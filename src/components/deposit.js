@@ -38,10 +38,17 @@ const Deposit = () => {
   }, [currentUser]);
 
   const handleInputChange = (field, value) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [field]: prevFormData[field] === '0.00' ? value : value,
-    }));
+    if (field === 'amount' && formData.amount === '0.00') {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [field]: value,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [field]: value,
+      }));
+    }
     setIsFormFilled(true);
   };
 
@@ -78,7 +85,7 @@ const Deposit = () => {
 
       setTransactionMessage(`Deposit of $${amount.toFixed(2)} USD successful!`);
       setFormData({ ...formData, amount: '0.00' });
-      setBalance(transactionResponse.transaction.amount + balance);
+      setBalance(transactionResponse.transaction.amount + balance); 
       setIsFormFilled(false);
       setTimeout(() => {
         setTransactionMessage('');
@@ -139,8 +146,7 @@ const Deposit = () => {
                   handleInputChange={handleInputChange}
                   isFormFilled={isFormFilled}
                   setIsFormFilled={setIsFormFilled}
-                  widthClass="col-md-12"
-                  onFocus={(e) => handleInputChange('amount', '')}
+                  widthClass="col-md-12" 
                 />
               ) : (
                 <p className="text-center">Please <Link to="/login">log in</Link> to deposit.</p>
