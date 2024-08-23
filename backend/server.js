@@ -6,6 +6,9 @@ const path = require('path');
 // Load environment variables from .env file in the backend folder
 require('dotenv').config({ path: './backend/.env' });
 
+// Add a console log to check the JWT_SECRET value
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
+
 const app = express();
 
 // Enable CORS for all routes
